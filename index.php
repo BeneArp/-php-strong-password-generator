@@ -33,8 +33,35 @@
         $caratteri_password[] = $carattere;
     }
 
+    var_dump($caratteri_password);
 
-    var_dump($caratteri_password)
+    // password generata
+    // $password = [];
+
+
+    function generatePassword($contenuto, $lunghezza){
+        if(isset($lunghezza)){
+
+            for($i = 1; $i <= $lunghezza; $i++){
+                $carattere = $contenuto[rand(0, (count($contenuto) - 1))];
+                $password[] = $carattere;
+            }
+    
+            return $password;
+        }
+    };
+
+    
+    var_dump(count($caratteri_password));
+
+    // controllo che il numero inserito dall'utente non sia più grande della lunghezza dell'array da cui prendo i caratteri
+    if(count($caratteri_password) < $numero_utente){
+        // se il numero inserito è maggiore, il nuovo numero utente diventa l'indice dell'ultimo carattere nell'array
+        $numero_utente = count($caratteri_password);
+    }
+
+    generatePassword($caratteri_password, $numero_utente);
+    var_dump($password);
 
 ?>
 
@@ -49,7 +76,7 @@
 <body>
     
     <form action="index.php" method="GET">
-        <input type="number" name="numero_utente">
+        <input type="number" name="numero_utente" placeholder="Inserisci numero">
     </form>
 
 </body>

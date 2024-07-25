@@ -1,10 +1,10 @@
 <?php 
 
-    $numero_utente = $_GET['numero_utente'];
+    $numero_utente = isset($_GET['numero_utente']) ? $_GET['numero_utente'] : '';
 
-    $lettere = $_GET['lettere'];
-    $numeri = $_GET['numeri'];
-    $simboli = $_GET['simboli'];
+    $lettere = isset($_GET['lettere']) ? $_GET['lettere'] : '';
+    $numeri = isset($_GET['numeri']) ? $_GET['numeri'] : '';
+    $simboli = isset($_GET['simboli']) ? $_GET['simboli'] : '';
 
     // se di defaulto non viene inviata la chiave 'ripetizioni' $ripetizioni sarà = false
     $ripetizioni = isset($_GET['ripetizioni']) ? $_GET['ripetizioni'] : false;

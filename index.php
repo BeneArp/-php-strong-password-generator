@@ -35,33 +35,7 @@
 
     // var_dump($caratteri_password);
 
-
-
-    function generatePassword($contenuto, $lunghezza){
-        if(isset($lunghezza)){
-
-            for($i = 1; $i <= $lunghezza; $i++){
-                $carattere = $contenuto[rand(0, (count($contenuto) - 1))];
-                $password[] = $carattere;
-            }
-            
-            $string_password = implode($password);
-            return $string_password;
-        }
-    };
-
-    
-    // var_dump(count($caratteri_password));
-
-    // controllo che il numero inserito dall'utente non sia più grande della lunghezza dell'array da cui prendo i caratteri
-    
-    if(count($caratteri_password) < $numero_utente){
-        // se il numero inserito è maggiore, il nuovo numero utente diventa l'indice dell'ultimo carattere nell'array
-        $numero_utente = count($caratteri_password);
-    }
-
-    // $my_password = generatePassword($caratteri_password, $numero_utente);
-    // var_dump($my_password);
+    include __DIR__ . '/functions.php';
 
     $user_password = generatePassword($caratteri_password, $numero_utente);
 
@@ -90,8 +64,12 @@
 
         <div class="container-md">
             <div class="ms-box light-blue">
-                <span>Genera una password compresa fra 8 e 32</span>
-                <h3><?php echo $user_password ?></h3>
+                <?php if($user_password) : ?>
+                    <h3><?php echo $user_password ?></h3>
+                
+                <?php else : ?>
+                    <span>Genera una password compresa fra 8 e 32</span>
+                <?php endif ; ?>
             </div>
         </div>
 
@@ -114,3 +92,25 @@
 
 </body>
 </html>
+
+<style>
+    body{
+        background-color: rgb(0 22 50);
+    }
+
+    .ms-box{
+        border-radius: 10px;
+        margin: 2em 0;
+        padding: 1.5em 1em;
+        background-color: rgb(248 249 250);
+    }
+
+    h1,h2{
+        color: rgb(128 139 152);
+    }
+
+    .light-blue{
+        background-color:rgb(207 244 252) ;
+        color: rgb(13 81 96);
+    }
+</style>

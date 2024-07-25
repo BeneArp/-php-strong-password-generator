@@ -46,8 +46,9 @@
                 $carattere = $contenuto[rand(0, (count($contenuto) - 1))];
                 $password[] = $carattere;
             }
-    
-            return $password;
+            
+            $string_password = implode($password);
+            return $string_password;
         }
     };
 
@@ -60,8 +61,10 @@
         $numero_utente = count($caratteri_password);
     }
 
-    generatePassword($caratteri_password, $numero_utente);
-    var_dump($password);
+    // $my_password = generatePassword($caratteri_password, $numero_utente);
+    // var_dump($my_password);
+
+    $user_password = generatePassword($caratteri_password, $numero_utente);
 
 ?>
 
@@ -78,6 +81,8 @@
     <form action="index.php" method="GET">
         <input type="number" name="numero_utente" placeholder="Inserisci numero">
     </form>
+
+    <h2><?php echo $user_password ?></h2>
 
 </body>
 </html>

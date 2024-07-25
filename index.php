@@ -1,8 +1,5 @@
 <?php 
 
-    // array da cui prenderò i caratteri per generare la password
-    $caratteri_password = [];
-
     $numero_utente = $_GET['numero_utente'];
 
     $lettere = $_GET['lettere'];

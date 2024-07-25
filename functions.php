@@ -93,13 +93,32 @@
             $lunghezza = count($contenuto);
         }
 
-        for($i = 1; $i <= $lunghezza; $i++){
+
+        // $i = 0;
+        // while ($i <= $lunghezza) {
+        //     $carattere = $contenuto[rand(0, (count($contenuto) - 1))];
+
+        //     if(!in_array($carattere, $password)){
+        //         $password[] = $carattere;
+        //         $i++;
+        //     }
+        // }
+
+        while(count($password) < $lunghezza){
             $carattere = $contenuto[rand(0, (count($contenuto) - 1))];
 
             if(!in_array($carattere, $password)){
                 $password[] = $carattere;
             }
         }
+
+        // for($i = count($password); $i <= $lunghezza; $i++){
+        //     $carattere = $contenuto[rand(0, (count($contenuto) - 1))];
+
+        //     if(!in_array($carattere, $password)){
+        //         $password[] = $carattere;
+        //     }
+        // }
         
         $string_password = implode($password);
         return $string_password;

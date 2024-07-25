@@ -1,8 +1,5 @@
 <?php 
 
-    // Creare un form che invii in GET la lunghezza della password. Una nostra funzione utilizzerà questo dato per generare una password casuale (composta da lettere, lettere maiuscole, numeri e simboli) da restituire all’utente.
-    // Scriviamo tutto (logica e layout) in un unico file index.php
-
     $numero_utente = $_GET['numero_utente'];
     // var_dump($numero_utente);
 
@@ -35,26 +32,29 @@
 
     // var_dump($caratteri_password);
 
+    // includo le funzioni
     include __DIR__ . '/functions.php';
 
-    $user_password = generatePassword($caratteri_password, $numero_utente);
+     // controllo che il numero utente non sia null
+     if(isset($numero_utente) && $numero_utente > 7){
+
+        $user_password = generatePassword($caratteri_password, $numero_utente);
+
+        session_start();
+        $_SESSION['password'] = $user_password;
+
+        // reindirizzo alla pagina success.php
+        header('Location: ./success.php');
+     };
+
 
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Generator</title>
-
-    <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
-    <!-- css -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <?php 
+        // includo l'head
+        include __DIR__ . '/head.php'; 
+    ?>
 <body>
 
     <div class="container text-center pt-5">
@@ -64,12 +64,7 @@
 
         <div class="container-md">
             <div class="ms-box light-blue">
-                <?php if($user_password) : ?>
-                    <h3><?php echo $user_password ?></h3>
-                
-                <?php else : ?>
                     <span>Genera una password compresa fra 8 e 32</span>
-                <?php endif ; ?>
             </div>
         </div>
 

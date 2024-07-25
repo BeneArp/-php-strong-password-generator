@@ -9,18 +9,26 @@
     $numeri = $_GET['numeri'];
     $simboli = $_GET['simboli'];
 
+    // se di defaulto non viene inviata la chiave 'ripetizioni' $ripetizioni sarà = false
+    $ripetizioni = isset($_GET['ripetizioni']) ? $_GET['ripetizioni'] : false;
+
     // var_dump($caratteri_password);
 
     // includo le funzioni
     include __DIR__ . '/functions.php';
 
      // controllo che il numero utente non sia null
-     if(isset($numero_utente) && $numero_utente > 7){
-
+     if(isset($numero_utente) && $numero_utente > 7 && $numero_utente <= 32){
 
         $caratteri_password = createArray($lettere, $numeri, $simboli, $alphachar, $numbers, $caratteri_speciali);
 
-        $user_password = generatePassword($caratteri_password, $numero_utente);
+        
+        if($ripetizioni === 'no'){
+            $user_password = generatePasswordUnique($caratteri_password, $numero_utente);
+
+        }else{
+            $user_password = generatePassword($caratteri_password, $numero_utente);
+        }
 
         session_start();
         $_SESSION['password'] = $user_password;
@@ -65,6 +73,19 @@
 
                             <!-- input -->
                             <input class="form-control" type="number" name="numero_utente" placeholder="Inserisci numero">
+
+                            <div class="form-check mt-4">
+                                <input class="form-check-input" type="radio" name="ripetizioni" id="ripetizioni_si" value="si">
+                                <label class="form-check-label" for="ripetizioni_si">
+                                    Si
+                                </label>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="ripetizioni" id="ripetizioni_no" value="no">
+                                <label class="form-check-label" for="ripetizioni_no">
+                                    No
+                                </label>
+                            </div>
 
                             <!-- checkbox -->
                             <div class="form-check mt-4">

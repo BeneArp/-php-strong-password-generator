@@ -8,7 +8,7 @@
     var_dump($lettere);
     
     // se di defaulto non viene inviata la chiave 'ripetizioni' $ripetizioni sarà = false
-    $vote = isset($_GET['ripetizioni']) ? $_GET['ripetizioni'] : false;
+    $ripetizioni = isset($_GET['ripetizioni']) ? $_GET['ripetizioni'] : false;
 
     var_dump($numeri)
 ?>

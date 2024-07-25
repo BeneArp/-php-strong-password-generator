@@ -36,6 +36,7 @@
 
 
     // FUNZIONI
+    // genera array ciclando sugli array che corrispondono alle categorie scelte dall'utente
     function createArray($parametro1, $parametro2, $parametro3, $array1, $array2, $array3){
         if($parametro1 === 'on'){
             foreach($array1 as $carattere){
@@ -58,6 +59,10 @@
         return $array_password;
     }
 
+
+
+
+
     // genera un stringa della lunghezza richiesta, formata da caratteri presi randomicamente dall'array che gli viene passato
     function generatePassword($contenuto, $lunghezza){
     
@@ -76,6 +81,29 @@
         return $string_password;
     };
 
+
+
+    // genera un stringa della lunghezza richiesta, formata da caratteri presi randomicamente dall'array che gli viene passato senza mai ripetere un carattere
+    function generatePasswordUnique($contenuto, $lunghezza){
+        $password = [];
+
+        // controllo che il numero inserito dall'utente non sia più grande della lunghezza dell'array da cui prendo i caratteri
+        if($lunghezza > count($contenuto)){
+            // se il numero inserito è maggiore, il nuovo numero utente diventa l'indice dell'ultimo carattere nell'array
+            $lunghezza = count($contenuto);
+        }
+
+        for($i = 1; $i <= $lunghezza; $i++){
+            $carattere = $contenuto[rand(0, (count($contenuto) - 1))];
+
+            if(!in_array($carattere, $password)){
+                $password[] = $carattere;
+            }
+        }
+        
+        $string_password = implode($password);
+        return $string_password;
+    };    
 
 
     // var_dump(count($caratteri_password));

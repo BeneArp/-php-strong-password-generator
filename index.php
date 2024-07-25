@@ -4,7 +4,7 @@
     // Scriviamo tutto (logica e layout) in un unico file index.php
 
     $numero_utente = $_GET['numero_utente'];
-    var_dump($numero_utente);
+    // var_dump($numero_utente);
 
     // array da cui prenderò i caratteri per generare la password
     $caratteri_password = [];
@@ -33,10 +33,8 @@
         $caratteri_password[] = $carattere;
     }
 
-    var_dump($caratteri_password);
+    // var_dump($caratteri_password);
 
-    // password generata
-    // $password = [];
 
 
     function generatePassword($contenuto, $lunghezza){
@@ -53,9 +51,10 @@
     };
 
     
-    var_dump(count($caratteri_password));
+    // var_dump(count($caratteri_password));
 
     // controllo che il numero inserito dall'utente non sia più grande della lunghezza dell'array da cui prendo i caratteri
+    
     if(count($caratteri_password) < $numero_utente){
         // se il numero inserito è maggiore, il nuovo numero utente diventa l'indice dell'ultimo carattere nell'array
         $numero_utente = count($caratteri_password);
@@ -75,14 +74,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator</title>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
-    <form action="index.php" method="GET">
-        <input type="number" name="numero_utente" placeholder="Inserisci numero">
-    </form>
 
-    <h2><?php echo $user_password ?></h2>
+    <div class="container text-center pt-5">
+
+        <h1>Strong Password Generator</h1>
+        <h2>Genera una password sicura</h2>
+
+        <div class="container-md">
+            <div class="ms-box light-blue">
+                <span>Genera una password compresa fra 8 e 32</span>
+                <h3><?php echo $user_password ?></h3>
+            </div>
+        </div>
+
+        <div class="ms-box">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6">
+                        <span>Lunghezza password:</span>
+                    </div>
+                    <div class="col-6">
+                        <form action="index.php" method="GET">
+                            <input class="form-control" type="number" name="numero_utente" placeholder="Inserisci numero">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    
+    </div>
 
 </body>
 </html>

@@ -1,23 +1,21 @@
 <?php 
 
-    $numero_utente = isset($_GET['numero_utente']) ? $_GET['numero_utente'] : '';
-
-    $lettere = isset($_GET['lettere']) ? $_GET['lettere'] : '';
-    $numeri = isset($_GET['numeri']) ? $_GET['numeri'] : '';
-    $simboli = isset($_GET['simboli']) ? $_GET['simboli'] : '';
-
-    // se di defaulto non viene inviata la chiave 'ripetizioni' $ripetizioni sarà = false
-    $ripetizioni = isset($_GET['ripetizioni']) ? $_GET['ripetizioni'] : false;
-
     // var_dump($caratteri_password);
 
     // includo le funzioni
     include __DIR__ . '/functions.php';
 
+
      // controllo che il numero utente non sia null
      if(isset($numero_utente) && $numero_utente > 7 && $numero_utente <= 32){
 
-        $caratteri_password = createArray($lettere, $numeri, $simboli, $alphachar, $numbers, $caratteri_speciali);
+        if($lettere === '' && $numeri === '' && $simboli === ''){
+            $caratteri_password = createArray($alphachar, $numbers, $caratteri_speciali);
+
+        }else{
+            $caratteri_password = createArrayWithCategory($lettere, $numeri, $simboli, $alphachar, $numbers, $caratteri_speciali);
+
+        }
 
         
         if($ripetizioni === 'no'){

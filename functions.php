@@ -1,6 +1,14 @@
 <?php
 
-    // var_dump($numero_utente);
+    $numero_utente = isset($_GET['numero_utente']) ? $_GET['numero_utente'] : '';
+
+    $lettere = isset($_GET['lettere']) ? $_GET['lettere'] : '';
+    $numeri = isset($_GET['numeri']) ? $_GET['numeri'] : '';
+    $simboli = isset($_GET['simboli']) ? $_GET['simboli'] : '';
+
+    // se di defaulto non viene inviata la chiave 'ripetizioni' $ripetizioni sarà = false
+    $ripetizioni = isset($_GET['ripetizioni']) ? $_GET['ripetizioni'] : false;
+
 
     // ARRAY
     
@@ -36,8 +44,28 @@
 
 
     // FUNZIONI
+    // crea array utilizzando tutte le categorie
+    function createArray($array1, $array2, $array3){
+        foreach($array1 as $carattere){
+            $array_password[] = $carattere;
+        }
+
+        foreach($array2 as $carattere){
+            $array_password[] = $carattere;
+        }
+
+        foreach($array3 as $carattere){
+            $array_password[] = $carattere;
+        }
+
+        return $array_password;
+    }
+
+
+
+
     // genera array ciclando sugli array che corrispondono alle categorie scelte dall'utente
-    function createArray($parametro1, $parametro2, $parametro3, $array1, $array2, $array3){
+    function createArrayWithCategory($parametro1, $parametro2, $parametro3, $array1, $array2, $array3){
         if($parametro1 === 'on'){
             foreach($array1 as $carattere){
                 $array_password[] = $carattere;
@@ -55,7 +83,6 @@
             }
         }
 
-        var_dump($array_password);
         return $array_password;
     }
 
